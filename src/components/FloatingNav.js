@@ -55,8 +55,10 @@ const NavLink = Link.extend`
 `;
 export default class FloatingNav extends Component {
   static defaultProps = {
+    onClickGuide: () => {},
     onClickEdit: () => {},
     onClickLogout: () => {},
+    linkToGuide: false,
   }
 
   state = {
@@ -75,6 +77,11 @@ export default class FloatingNav extends Component {
     }
   }
 
+  // 가이드북 버튼 클릭 시
+  handleClickGuide = () => {
+    this.props.onClickGuide();
+    this.handleNavToggle();
+  }
   // 뽀모수정 버튼 클릭 시 이벤트처리
   handleClickEdit = () => {
     if (this.state.active) {
@@ -84,8 +91,10 @@ export default class FloatingNav extends Component {
   }
 
   handleClickLogout = () => {
-    this.props.onClickLogout();
-    this.handleNavToggle();
+    if (this.state.active) {
+      this.props.onClickLogout();
+      this.handleNavToggle();
+    }
   }
 
   render() {
@@ -102,7 +111,7 @@ export default class FloatingNav extends Component {
           <Gnb className={`gnb ${active ? 'gnbshow' : ''}`}>
             <GnbList>
               <span>가이드북</span>
-              <NavLink className={active ? 'show' : 'hide'}>
+              <NavLink className={active ? 'show' : 'hide'} onClick={this.handleClickGuide}>
                 <Icon className="icon-book" />
               </NavLink>
             </GnbList>

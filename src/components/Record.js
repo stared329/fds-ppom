@@ -142,16 +142,15 @@ WeekRecordWrap.defaultProps = {
   },
 };
 const GoalTitleForWeek = styled.div`
-  width:60%;
+  width:50%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 1.2em;
   line-height:1.5;
-  margin-right:10px;
 `;
 const WeeklyPpomCount = styled.div`
-  width:25%;
+  width:22%;
   text-align: right;
 `;
 
@@ -163,8 +162,8 @@ const WeeklyPpomNum = styled.strong`
   padding-right: 3px;
 `;
 const TotalTime = styled.span`
-  width: 15%;
-  text-align: center;
+  width: 23%;
+  text-align: right;
 `;
 
 // 리차트
@@ -197,7 +196,6 @@ export default class Record extends Component {
 
   getTheme = (idx) => {
     const color = this.getColor(idx);
-    console.log(color);
     return {
       color,
     };
@@ -271,7 +269,7 @@ export default class Record extends Component {
           (activeItem === 'week') && (
             <div>
               {dataArr.length === 0 && (
-                <Image src={deactiveImg} size="tiny" circular centered />
+                <Image src={deactiveImg} size="mini" circular centered />
               )}
               {dataArr.length > 0 && (
                 <ChartWrap>
